@@ -1,9 +1,22 @@
+import Footer from "./component/Footer";
+import Header from "./component/Header";
+import RouteList from "./routes/RouteList";
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 
 function App() {
   return (
-    <div className="App">
-     <h1>heelo</h1>
+    <div className="mainDiv">
+      <section id="header">
+        <Header />
+      </section>
+      <div className="subDiv">
+        <RouteList />
+      </div>
+      <section id="footer">
+        <Footer />
+      </section>
     </div>
   );
 }
