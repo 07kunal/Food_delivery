@@ -5,6 +5,7 @@ const dotenv = require("dotenv").config()
 const PORT = process.env.PORT || 5000
 const pizzaRoutes = require('./routes/pizzaRoutes')
 const Pizza = require("./modals/pizzaModal")
+const UserRoutes = require('./routes/userRoutes')
 
 
 // connect to database
@@ -15,15 +16,10 @@ app.use(express.json());
 
 // Routes for get Pizzas
 app.use('/api/pizzas', pizzaRoutes)
-// app.get('/api/pizzas', (req, res) => {
-//     Pizza.find({}, (err, docs) => {
-//         if (err) {
-//             console.log(err);
-//         } else {
-//             return res.send(docs)
-//         }
-//     })
-// })
+// User Routes
+app.use('/api/users', UserRoutes)
+
+
 
 app.get('/', (req, res) => {
     return res.status(200).json({ message: "Welcome to Pizza_Delivery_app API" })

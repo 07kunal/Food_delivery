@@ -6,6 +6,9 @@
   margin: 0;
   font-family: "Montserrat", sans-serif;
 }
+:root {
+  --main_color: rgb(245, 64, 64);
+}
 
 .homepage {
   cursor: pointer;
@@ -102,6 +105,14 @@
   width: 100%;
   height: 100%;
   object-fit: contain;
+}
+.new_user {
+  margin-top: 10px;
+}
+.new_user span {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--main_color);
 }
 
 @media only screen and (min-width: 481px) and (max-width: 768px) {

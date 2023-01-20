@@ -2,17 +2,27 @@ import React from "react";
 import { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
-
+import { useSelector } from "react-redux";
+import LoginModal from "../modals/LoginModal";
 function PizzaCard(props) {
-  const { index, pizzaItem } = props;
+  const { index, pizzaItem, addToCart } = props;
   const [varient, setVarient] = useState("small");
   const [quantity, setQuantity] = useState(1);
   const [modalShow, setModalShow] = useState(false);
+  const [modalLoginShow, setModalLoginShow] = useState(false);
+  const userLogin = useSelector((state) => state.userLogin);
+  const { userInfo } = userLogin;
+
   // console.log(varient);
   // console.log(quantity);
   // console.log(pizzaItem?.prices[0][varient]);
   return (
     <>
+      <LoginModal
+        show={modalLoginShow}
+        onHide={() => setModalLoginShow(false)}
+      />
+
       <div key={index} className="cardDiv shadow-lg p-3 mb-5 bg-white rounded">
         <div className="cardHeading">
           <h1>{pizzaItem.name}</h1>
@@ -67,7 +77,18 @@ function PizzaCard(props) {
             Price:₹ {pizzaItem?.prices[0][varient] * quantity}/-
           </div>
           <div className="cart">
-            <button className="btnCart">Add to Cart</button>
+            {userInfo ? (
+              <button className="btnCart" onClick={addToCart}>
+                Add to Cart
+              </button>
+            ) : (
+              <button
+                className="btnCart"
+                onClick={() => setModalLoginShow(true)}
+              >
+                Add to Cart
+              </button>
+            )}
           </div>
         </div>
         {/* modal */}
