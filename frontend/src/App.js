@@ -2,6 +2,8 @@ import Footer from "./component/Footer";
 import Header from "./component/Header";
 import RouteList from "./routes/RouteList";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 
 
@@ -14,9 +16,9 @@ function App() {
       <div className="subDiv">
         <RouteList />
       </div>
-      <section id="footer">
+      {/* <section id="footer">
         <Footer />
-      </section>
+      </section> */}
     </div>
   );
 }

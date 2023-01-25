@@ -6,8 +6,7 @@ const PORT = process.env.PORT || 5000
 const pizzaRoutes = require('./routes/pizzaRoutes')
 const Pizza = require("./modals/pizzaModal")
 const UserRoutes = require('./routes/userRoutes')
-
-
+const cartRoutes = require('./routes/cartRoutes')
 // connect to database
 connectDb()
 
@@ -18,6 +17,9 @@ app.use(express.json());
 app.use('/api/pizzas', pizzaRoutes)
 // User Routes
 app.use('/api/users', UserRoutes)
+// cart routes
+app.use('/api/cart', cartRoutes)
+
 
 
 

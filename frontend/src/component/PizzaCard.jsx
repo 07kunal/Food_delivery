@@ -1,20 +1,46 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { addToCart, createToCartAction } from "../action/cartActions";
 import LoginModal from "../modals/LoginModal";
+
 function PizzaCard(props) {
-  const { index, pizzaItem, addToCart } = props;
+  const { index, pizzaItem } = props;
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [varient, setVarient] = useState("small");
   const [quantity, setQuantity] = useState(1);
+  const [price, setPrice] = useState("");
   const [modalShow, setModalShow] = useState(false);
   const [modalLoginShow, setModalLoginShow] = useState(false);
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
+  useEffect(() => {
+    setPrice(pizzaItem?.prices[0][varient] * quantity);
+  
+  }, [pizzaItem, varient, quantity]);
+
+  const AddToCart = () => {
+    // dispatch(addToCart(pizzaItem, quantity, varient));
+
+    dispatch(
+      createToCartAction(
+        pizzaItem?.name,
+        quantity,
+        varient,
+        pizzaItem?.image_url,
+        pizzaItem?.prices,
+        price
+      )
+    );
+    navigate("/carts");
+  };
 
   // console.log(varient);
-  // console.log(quantity);
+  // console.log(prices);
   // console.log(pizzaItem?.prices[0][varient]);
   return (
     <>
@@ -78,7 +104,7 @@ function PizzaCard(props) {
           </div>
           <div className="cart">
             {userInfo ? (
-              <button className="btnCart" onClick={addToCart}>
+              <button className="btnCart" onClick={AddToCart}>
                 Add to Cart
               </button>
             ) : (

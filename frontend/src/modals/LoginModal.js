@@ -1,7 +1,7 @@
 import React from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-import { useState, useEffect } from 'react';
+import { useState, useEffect,useCallback } from 'react';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import Form from 'react-bootstrap/Form';
 import './modal.css'
@@ -11,6 +11,7 @@ import { login } from '../action/userActions';
 import Loader from '../component/Loader'
 import { toast } from 'react-toastify';
 import SignUpModal from './SignUpModal';
+
 
 
 function LoginModal(props) {
@@ -32,12 +33,18 @@ function LoginModal(props) {
 
     }
     useEffect(() => {
+
+        if (error) {
+            toast.error(error)
+        }
+
         if (userInfo) {
             onHide()
             navigate('/')
         }
 
-    }, [userInfo])
+    }, [userInfo,error])
+
     return (
         <>
             <SignUpModal show={SignUpShow} onHide={() => setSignUpShow(false)} />
@@ -53,7 +60,7 @@ function LoginModal(props) {
                     </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    {error && toast.error(error)}
+
                     {loading && <Loader />}
                     <Form onSubmit={handleSubmit}>
                         <Form.Group className="mb-3" controlId="formBasicEmail">
@@ -83,7 +90,7 @@ function LoginModal(props) {
                     <div className="new_user">
                         <p>New to Pizza's Club <span onClick={() => {
                             setSignUpShow(true);
-                                onHide()
+                            onHide()
                         }}>Click Here</span></p>
                     </div>
                 </Modal.Body>

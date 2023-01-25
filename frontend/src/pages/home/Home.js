@@ -25,22 +25,18 @@ function Home() {
     }
   }, [pizzaDatas])
 
-  const addToCart = () => {
-    navigate('/carts')
-
-
-  }
+ 
   return (
     // for search bar
     // for cards
 
     <div className='MainCard'>
-      <div className="container">
+      <div className="container cardContainer">
         {loading && <Loader />}
         <div className='row'>
 
           {pizzaData?.map((pizzaItem, index) => {
-            return <div className="col-md-4 "> <PizzaCard index={index} pizzaItem={pizzaItem} addToCart={addToCart} />
+            return <div className="col-md-4 "> <PizzaCard index={index} pizzaItem={pizzaItem}  />
             </div>
           })}
 

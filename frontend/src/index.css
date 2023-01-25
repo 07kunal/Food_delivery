@@ -9,6 +9,9 @@
 :root {
   --main_color: rgb(245, 64, 64);
 }
+.subDiv{
+  min-height: 100vh;
+}
 
 .homepage {
   cursor: pointer;
@@ -113,6 +116,9 @@
   font-size: 16px;
   font-weight: 600;
   color: var(--main_color);
+}
+.cardContainer{
+  min-height: 100vh;
 }
 
 @media only screen and (min-width: 481px) and (max-width: 768px) {

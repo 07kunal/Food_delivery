@@ -1,0 +1,59 @@
+.mainCart .heading h1 {
+  font-size: 30px;
+  text-align: center;
+  text-transform: capitalize;
+}
+.mainCart .cart-a {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.mainCart .pizzaImage {
+  width: 200px;
+  height: 200px;
+}
+.mainCart .pizzaImage img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.mainCart .cart-a h2 {
+  font-size: 22px;
+}
+.mainCart .cart-a h2 .varientSize {
+  display: inline-block;
+}
+.mainCart .cart-a span {
+  display: block;
+}
+.mainCart .cart-a .icon {
+  font-size: 20px;
+  color: var(--main_color);
+}
+.mainCart .cart-a .icon .iconFa {
+  margin-left: 20px;
+  cursor: pointer;
+}
+.mainCart .cart-a .icon .iconMd {
+  cursor: pointer;
+}
+.mainAmount {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+.amountDiv {
+  display: block;
+  font-size: 25px;
+}
+
+.mainAmount .charges {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+}
+.mainAmount .charges span{
+  text-transform: uppercase;
+}

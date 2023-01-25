@@ -1,11 +1,12 @@
 import React from "react";
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { listCart } from "../action/cartActions";
 import { logout } from "../action/userActions";
 import LoginModal from "../modals/LoginModal";
 import SignUpModal from "../modals/SignUpModal";
@@ -17,7 +18,15 @@ function Header() {
   const dispatch = useDispatch();
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
-  // console.log(userInfo);
+  const cartList = useSelector((state) => state.cartList);
+  const {loading, cart, error} = cartList;
+  useEffect(() => {
+    dispatch(listCart());
+    // if (!userInfo) {
+    //     navigate('/')
+    // }
+  }, [dispatch, userInfo]);
+  // console.log(cart);
   return (
     <>
       <LoginModal show={modalShow} onHide={() => setModalShow(false)} />
@@ -36,7 +45,7 @@ function Header() {
           <Navbar.Collapse id="basic-navbar-nav  ">
             <Nav className="me-auto">
               {userInfo ? (
-                <Nav.Link onClick={() => navigate("/carts")}>Cart</Nav.Link>
+                <Nav.Link onClick={() => navigate("/carts")}>Cart ({cart?.length})</Nav.Link>
               ) : (
                 <Nav.Link onClick={() => setModalShow(true)}>Cart</Nav.Link>
               )}
