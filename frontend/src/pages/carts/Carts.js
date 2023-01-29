@@ -8,6 +8,8 @@ import { deleteCart } from '../../action/cartActions';
 import UpdateModal from '../../modals/UpdateModal';
 import { useState } from 'react';
 import { Button } from 'react-bootstrap';
+import Checkout from '../checkout/Checkout';
+
 
 
 
@@ -30,12 +32,9 @@ function Carts() {
 
 
   }
-  const getCartTotal = () =>
-    cart?.reduce(
-      (acc, cartItem) =>
-        acc + parseInt(cartItem.price),
-      0
-    );
+  const getCartTotal = cart?.reduce((acc, cartItem) => acc + parseInt(cartItem.price),
+    50
+  );
   // console.log(cart);
   return (
     <div className="mainCart">
@@ -88,13 +87,14 @@ function Carts() {
               </div>
               <div className="charges">
 
-                <span >Total Amount To Pay: </span> <span className='amountDiv'>₹{`${getCartTotal() + 50}`}/-</span>
+                <span >Total Amount To Pay: </span> <span className='amountDiv'>₹{`${getCartTotal }`}/-</span>
               </div>
-              <div className="btn_button">
+              {/* <div className="btn_button">
                 <Button variant='danger'>
                   Check Out
                 </Button>
-              </div>
+              </div> */}
+              <Checkout getCartTotal={getCartTotal} />
             </div>
           </div>
         </div>

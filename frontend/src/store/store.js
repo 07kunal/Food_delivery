@@ -4,6 +4,7 @@ import { composeWithDevTools } from 'redux-devtools-extension'
 import { getPizzaReducer } from "../reducers/pizzaReducers";
 import { userLoginReducer, userRegisterReducer } from "../reducers/userReducers";
 import { cartDeleteReducer, cartListReducer, cartUpdateReducer, createCartReducer } from "../reducers/cartReducer";
+import { placeOrderReducer } from "../reducers/orderReducer";
 
 
 
@@ -15,6 +16,7 @@ const reducer = combineReducers({
     cartList: cartListReducer,
     cardDelete: cartDeleteReducer,
     cartUpdate: cartUpdateReducer,
+    placeOrder: placeOrderReducer,
 
 })
 

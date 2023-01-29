@@ -54,6 +54,17 @@ function Header() {
                 id="basic-nav-dropdown"
               >
                 {userInfo ? (
+                  <>
+                  <NavDropdown.Item
+                    onClick={() => {
+                      // localStorage.removeItem("userInfo");
+                      // dispatch(logout());
+                      navigate("/orders");
+                    }}
+                  >
+                    My orders
+                  </NavDropdown.Item>
+
                   <NavDropdown.Item
                     onClick={() => {
                       // localStorage.removeItem("userInfo");
@@ -63,6 +74,7 @@ function Header() {
                   >
                     Log Out
                   </NavDropdown.Item>
+                  </>
                 ) : (
                   <>
                     <NavDropdown.Item onClick={() => setModalShow(true)}>

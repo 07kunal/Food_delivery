@@ -7,6 +7,8 @@ const pizzaRoutes = require('./routes/pizzaRoutes')
 const Pizza = require("./modals/pizzaModal")
 const UserRoutes = require('./routes/userRoutes')
 const cartRoutes = require('./routes/cartRoutes')
+const addressRoutes = require('./routes/addressRoutes')
+const orderRoutes = require('./routes/orderRoutes')
 // connect to database
 connectDb()
 
@@ -19,6 +21,11 @@ app.use('/api/pizzas', pizzaRoutes)
 app.use('/api/users', UserRoutes)
 // cart routes
 app.use('/api/cart', cartRoutes)
+// address route
+app.use('/api/address', addressRoutes)
+// order route
+app.use('/api/order', orderRoutes)
+
 
 
 
