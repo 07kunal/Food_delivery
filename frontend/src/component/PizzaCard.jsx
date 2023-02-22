@@ -47,9 +47,13 @@ function PizzaCard(props) {
   // remove item from cart
   const findItem = cart?.find((item) => {
     if (item.product_id === pizzaItem?._id) {
+      
       return true;
     }
   });
+  // useEffect(()=>{
+  //   setQuantity(findItem?.quantity)
+  // },[findItem])
   const deleteHandler = (pizza_id) => {
     if (window.confirm("Are you sure to remove this item from cart?")) {
       dispatch(deleteCart(pizza_id));
@@ -60,7 +64,9 @@ function PizzaCard(props) {
     const productIndex = cart?.findIndex((item) => {
       return item.product_id === pizzaItem?._id;
     });
+
     if (productIndex > -1) {
+
       return true;
     } else {
       return false;
@@ -69,7 +75,8 @@ function PizzaCard(props) {
 
   // console.log(varient);
   // console.log(prices);
-  // console.log(findItem?._id);
+  console.log(findItem);
+
   return (
     <>
       <LoginModal
