@@ -9,6 +9,7 @@ const UserRoutes = require('./routes/userRoutes')
 const cartRoutes = require('./routes/cartRoutes')
 const addressRoutes = require('./routes/addressRoutes')
 const orderRoutes = require('./routes/orderRoutes')
+
 // connect to database
 connectDb()
 
