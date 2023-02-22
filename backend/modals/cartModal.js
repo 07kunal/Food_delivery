@@ -20,9 +20,13 @@ const cartSchema = mongoose.Schema(
         prices: {
             type: Array,
             required: true,
-           
+
         },
         price: {
+            type: String,
+            required: true,
+        },
+        product_id: {
             type: String,
             required: true,
         },

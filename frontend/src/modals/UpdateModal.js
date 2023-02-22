@@ -66,67 +66,71 @@ function UpdateModal(props) {
     console.log(price)
 
     return (
-        <Modal
-            {...props}
-            size="lg"
-            aria-labelledby="contained-modal-title-vcenter"
-            centered
-        >
-            {loading && <Loader />}
-            {loadingByid ? <Loader /> : <>
-                <Modal.Header closeButton>
-                    <Modal.Title id="contained-modal-title-vcenter">
-                        <h2>{cartdata?.pizza_name}</h2>
-                    </Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
-                    <Form onSubmit={updateHandler} >
+        <>
+            {error && toast.error(error)}
 
-                        <Form.Group controlId="title">
-                            <Form.Label>quantity</Form.Label>
+            <Modal
+                {...props}
+                size="lg"
+                aria-labelledby="contained-modal-title-vcenter"
+                centered
+            >
+                {loading && <Loader />}
+                {loadingByid ? <Loader /> : <>
+                    <Modal.Header closeButton>
+                        <Modal.Title id="contained-modal-title-vcenter">
+                            <h2>{cartdata?.pizza_name}</h2>
+                        </Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                        <Form onSubmit={updateHandler} >
 
-                            <Form.Select type="quantity" value={quantity}
-                                onChange={(e) => setQuantity(e.target.value)}
-                                style={{ marginBottom: "15px" }} >
-                                {[...Array(10).keys()].map((x, i) => {
-                                    return (
-                                        <option value={i + 1} key={x}>
-                                            {i + 1}
-                                        </option>
-                                    );
-                                })}
-                            </Form.Select>
-                        </Form.Group>
+                            <Form.Group controlId="title">
+                                <Form.Label>quantity</Form.Label>
 
-                        <Form.Group controlId="content">
-                            <Form.Label>variant</Form.Label>
+                                <Form.Select type="quantity" value={quantity}
+                                    onChange={(e) => setQuantity(e.target.value)}
+                                    style={{ marginBottom: "15px" }} >
+                                    {[...Array(10).keys()].map((x, i) => {
+                                        return (
+                                            <option value={i + 1} key={x}>
+                                                {i + 1}
+                                            </option>
+                                        );
+                                    })}
+                                </Form.Select>
+                            </Form.Group>
 
-                            <Form.Select value={variant}
-                                onChange={(e) => setVariant(e.target.value)}
-                                style={{ marginBottom: "15px" }}>
-                                <option></option>
-                                <option value="small">small</option>
-                                <option value="medium">medium</option>
-                                <option value="large">large</option>
-                            </Form.Select>
-                        </Form.Group>
+                            <Form.Group controlId="content">
+                                <Form.Label>variant</Form.Label>
+
+                                <Form.Select value={variant}
+                                    onChange={(e) => setVariant(e.target.value)}
+                                    style={{ marginBottom: "15px" }}>
+                                    <option></option>
+                                    <option value="small">small</option>
+                                    <option value="medium">medium</option>
+                                    <option value="large">large</option>
+                                </Form.Select>
+                            </Form.Group>
 
 
 
-                        <div className="price">
-                            Price:₹ {cartdata && cartdata.prices && cartdata.prices[0][variant] * quantity}/-
-                        </div>
+                            <div className="price">
+                                Price:₹ {cartdata && cartdata.prices && cartdata.prices[0][variant] * quantity}/-
+                            </div>
 
-                        {/* <Button variant='danger' type='submit'>Update</Button> */}
-                        <Modal.Footer>
-                            <Button variant='danger' type='submit'>Update</Button>
-                        </Modal.Footer>
-                    </Form>
+                            {/* <Button variant='danger' type='submit'>Update</Button> */}
+                            <Modal.Footer>
+                                <Button variant='danger' type='submit'>Update</Button>
+                            </Modal.Footer>
+                        </Form>
 
-                </Modal.Body>
+                    </Modal.Body>
 
-            </>}
-        </Modal>
+                </>}
+            </Modal>
+        </>
     )
 }
 

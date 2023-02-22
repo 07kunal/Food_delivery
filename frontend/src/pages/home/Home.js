@@ -25,7 +25,9 @@ function Home() {
     }
   }, [pizzaDatas])
 
- 
+
+
+
   return (
     // for search bar
     // for cards
@@ -36,7 +38,7 @@ function Home() {
         <div className='row'>
 
           {pizzaData?.map((pizzaItem, index) => {
-            return <div className="col-md-4 "> <PizzaCard index={index} pizzaItem={pizzaItem}  />
+            return <div className="col-md-4 "> <PizzaCard index={index} pizzaItem={pizzaItem} />
             </div>
           })}
 

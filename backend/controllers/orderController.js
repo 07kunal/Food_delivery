@@ -80,7 +80,7 @@ const createOrder = asyncHandler(
                     res.send("payment failed")
                 }
 
-               
+               console.log( "nbbj265466",paymentIntent);
             }
 
 

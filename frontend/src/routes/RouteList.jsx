@@ -11,6 +11,7 @@ function RouteList() {
     return (
         <div>
             <Routes>
+                <Route path='/' element={<Home />} />
 
                 {/* protected routes */}
                 <Route path='/carts' element={<PrivateRoutes />}>
@@ -23,7 +24,6 @@ function RouteList() {
                     <Route path='/orders' element={<Orders />} />
 
                 </Route>
-                <Route path='/' element={<Home />} />
             </Routes>
             <ToastContainer />
         </div>

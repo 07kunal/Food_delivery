@@ -35,6 +35,7 @@
   font-size: 20px !important;
   text-align: center;
   width: 100%;
+  text-transform: uppercase;
 }
 /* .cardDiv .cardHeading .img {
   display: flex;
@@ -91,6 +92,16 @@
   font-size: 20px;
   font-weight: 600;
 }
+
+.cardPrice .btnCart2 {
+  padding: 10px;
+  border-radius: 15px;
+  border: none;
+  font-size: 18px;
+  background-color: rgb(7, 200, 4);
+  color: #fff;
+}
+
 .cardPrice .btnCart {
   padding: 10px;
   border-radius: 15px;
@@ -119,6 +130,9 @@
 }
 .cardContainer{
   min-height: 100vh;
+}
+.clickMe{
+  cursor: pointer;
 }
 
 @media only screen and (min-width: 481px) and (max-width: 768px) {

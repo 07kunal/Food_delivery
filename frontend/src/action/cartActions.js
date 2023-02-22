@@ -3,7 +3,7 @@ import { CREATE_CART_FAIL, CREATE_CART_REQUEST, CREATE_CART_SUCCESS, CART_LIST_F
 
 
 
-export const createToCartAction = (pizza_name, quantity, variant, image_url, prices, price) => async (dispatch, getState) => {
+export const createToCartAction = (pizza_name, quantity, variant, image_url, prices, price, product_id) => async (dispatch, getState) => {
     const API_URL = '/api/cart'
 
     try {
@@ -17,7 +17,7 @@ export const createToCartAction = (pizza_name, quantity, variant, image_url, pri
                 Authorization: `Bearer ${userInfo.token}`
             }
         }
-        const { data } = await axios.post(API_URL, { pizza_name, quantity, variant, image_url, prices, price }, config);
+        const { data } = await axios.post(API_URL, { pizza_name, quantity, variant, image_url, prices, price, product_id }, config);
 
         if (data) {
 
@@ -26,6 +26,7 @@ export const createToCartAction = (pizza_name, quantity, variant, image_url, pri
                 payload: data
             })
             dispatch(listCart())
+            console.log(data)
         }
 
     } catch (error) {

@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { toast } from 'react-toastify'
 import {
     USER_LOGIN_FAIL,
     USER_LOGIN_REQUEST,
@@ -26,7 +27,7 @@ export const register = (name, email, password) => async (dispatch) => {
                 type: USER_REGISTER_SUCCESS,
                 payload: response?.data
             })
-            // dispatch({type:USER_LOGIN_SUCCESS,payload:response?.data})
+            dispatch({type:USER_LOGIN_SUCCESS,payload:response?.data})
             localStorage.setItem("userInfo", JSON.stringify(response?.data))
 
         }
@@ -54,6 +55,7 @@ export const login = (email, password) => async (dispatch) => {
         // console.log(response.data)
         if (response?.data) {
             dispatch({ type: USER_LOGIN_SUCCESS, payload: response?.data })
+            
             localStorage.setItem("userInfo", JSON.stringify(response?.data))
         }
         // setIsLoading(false)
@@ -61,7 +63,13 @@ export const login = (email, password) => async (dispatch) => {
 
 
     } catch (error) {
-        dispatch({ type: USER_LOGIN_FAIL, payload: error.response?.data?.message ? error.response?.data?.message : error.message })
+        // dispatch({ type: USER_LOGIN_FAIL, payload: error.response?.data?.message ? error.response?.data?.message : error.message })
+        const message = error.response?.data?.message ? error.response?.data?.message : error.message;
+        dispatch({
+            type: USER_LOGIN_FAIL,
+            payload: message,
+        })
+        toast.error(message)
 
 
     }

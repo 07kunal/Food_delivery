@@ -1,0 +1,28 @@
+.heading {
+    text-align: center;
+    margin-bottom: 25px;
+}
+.mainOrder{
+    margin-bottom: 25px;
+}
+.subOrder{
+    justify-content: center;
+    background: rgb(202, 39, 39);
+    color: #fff;
+    padding: 20px 0px;
+}
+.subOrder .item{
+    margin-bottom: 5px;
+
+}
+.subOrder .itemList{
+    margin-bottom: 2px !important;
+    font-size: 18px;
+    font-weight: 600;
+
+
+}
+
+ .noOrder h1{
+    text-align: center;
+}

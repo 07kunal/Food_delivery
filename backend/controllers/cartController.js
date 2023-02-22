@@ -7,12 +7,12 @@ const User = require('../modals/userModal')
 // @access Public
 const createCarts = asyncHandler(
     async (req, res) => {
-        const { pizza_name, quantity, variant, image_url, prices, price } = req.body;
-        if (!pizza_name || !quantity || !variant || !image_url || !price) {
+        const { pizza_name, quantity, variant, image_url, prices, price,product_id } = req.body;
+        if (!pizza_name || !quantity || !variant || !image_url || !price || !product_id) {
             return res.status(400).json({ message: "Please include all filed" })
         } else {
             const cart = new Cart({
-                user: req.user._id, pizza_name, quantity, variant, image_url, prices, price
+                user: req.user._id, pizza_name, quantity, variant, image_url, prices, price,product_id
             })
             const createCart = await cart.save()
 

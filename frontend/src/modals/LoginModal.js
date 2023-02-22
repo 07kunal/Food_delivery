@@ -34,9 +34,6 @@ function LoginModal(props) {
     }
     useEffect(() => {
 
-        if (error) {
-            toast.error(error)
-        }
 
         if (userInfo) {
             onHide()
@@ -47,6 +44,7 @@ function LoginModal(props) {
 
     return (
         <>
+        {/* {error && toast.error(error)} */}
             <SignUpModal show={SignUpShow} onHide={() => setSignUpShow(false)} />
             <Modal
                 {...props}
@@ -91,7 +89,7 @@ function LoginModal(props) {
                         <p>New to Pizza's Club <span onClick={() => {
                             setSignUpShow(true);
                             onHide()
-                        }}>Click Here</span></p>
+                        }} className='clickMe'>Click Here</span></p>
                     </div>
                 </Modal.Body>
 

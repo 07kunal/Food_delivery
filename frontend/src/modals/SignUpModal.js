@@ -36,6 +36,10 @@ function SignUpModal(props) {
     }, [userInfo])
 
     return (
+        
+        <>
+        {error && toast.error(error)}
+
         <Modal
             {...props}
             // show={signUpShow}
@@ -95,6 +99,7 @@ function SignUpModal(props) {
             </Modal.Body>
 
         </Modal>
+        </>
     )
 }
 

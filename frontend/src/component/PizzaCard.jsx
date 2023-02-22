@@ -4,7 +4,11 @@ import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { addToCart, createToCartAction } from "../action/cartActions";
+import {
+  addToCart,
+  createToCartAction,
+  deleteCart,
+} from "../action/cartActions";
 import LoginModal from "../modals/LoginModal";
 
 function PizzaCard(props) {
@@ -18,9 +22,10 @@ function PizzaCard(props) {
   const [modalLoginShow, setModalLoginShow] = useState(false);
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
+  const cartList = useSelector((state) => state.cartList);
+  const { cart } = cartList;
   useEffect(() => {
     setPrice(pizzaItem?.prices[0][varient] * quantity);
-  
   }, [pizzaItem, varient, quantity]);
 
   const AddToCart = () => {
@@ -33,15 +38,38 @@ function PizzaCard(props) {
         varient,
         pizzaItem?.image_url,
         pizzaItem?.prices,
-        price
+        price,
+        pizzaItem?._id
       )
     );
-    navigate("/carts");
+  };
+
+  // remove item from cart
+  const findItem = cart?.find((item) => {
+    if (item.product_id === pizzaItem?._id) {
+      return true;
+    }
+  });
+  const deleteHandler = (pizza_id) => {
+    if (window.confirm("Are you sure to remove this item from cart?")) {
+      dispatch(deleteCart(pizza_id));
+    }
+    // console.log(pizza_id);
+  };
+  const wishListCart = () => {
+    const productIndex = cart?.findIndex((item) => {
+      return item.product_id === pizzaItem?._id;
+    });
+    if (productIndex > -1) {
+      return true;
+    } else {
+      return false;
+    }
   };
 
   // console.log(varient);
   // console.log(prices);
-  // console.log(pizzaItem?.prices[0][varient]);
+  // console.log(findItem?._id);
   return (
     <>
       <LoginModal
@@ -57,6 +85,7 @@ function PizzaCard(props) {
               src={pizzaItem.image_url}
               alt=""
               onClick={() => setModalShow(true)}
+              className="clickMe"
             />
           </div>
         </div>
@@ -104,9 +133,20 @@ function PizzaCard(props) {
           </div>
           <div className="cart">
             {userInfo ? (
-              <button className="btnCart" onClick={AddToCart}>
-                Add to Cart
-              </button>
+              <>
+                {wishListCart() ? (
+                  <button
+                    className="btnCart2"
+                    onClick={() => deleteHandler(findItem?._id)}
+                  >
+                    Added
+                  </button>
+                ) : (
+                  <button className="btnCart" onClick={() => AddToCart()}>
+                    Add to Cart
+                  </button>
+                )}
+              </>
             ) : (
               <button
                 className="btnCart"
